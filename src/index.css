@@ -1457,3 +1457,74 @@ dialog::backdrop {
     visibility: visible;
   }
 }
+
+/* Hide the native cursor only when the custom one is active */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+html.has-custom-cursor :is(textarea, [contenteditable='true'],
+  input:not([type='file'], [type='checkbox'], [type='radio'], [type='range'])) {
+  cursor: text !important;
+}
+
+/* Reset popover UA styles */
+.cursor-host {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 2147483647;
+  transition: opacity 0.2s ease;
+}
+.cursor-host[data-hidden='true'],
+.cursor-host[data-text='true'] {
+  opacity: 0;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* difference blend keeps it visible on both dark and light themes */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid #fff;
+  mix-blend-mode: difference;
+  opacity: 0.7;
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    opacity 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.cursor-host[data-hover='true'] .cursor-ring {
+  width: 54px;
+  height: 54px;
+  opacity: 1;
+}
+.cursor-host[data-down='true'] .cursor-ring {
+  width: 22px;
+  height: 22px;
+}
