@@ -17,6 +17,7 @@ import {
   X,
 } from 'lucide-react'
 import { Brand } from './components/Brand'
+import { Cursor } from './components/Cursor'
 import { Landing } from './features/upload/Landing'
 import { UploadArea, ImportStatus } from './features/upload/UploadArea'
 import { useImport } from './features/upload/useImport'
@@ -28,7 +29,6 @@ import { ExportMenu } from './features/export/ExportMenu'
 import { filterPhotos } from './lib/analytics'
 import { SAMPLE_PHOTOS } from './lib/sample'
 import { useLibrary } from './store/useLibrary'
-import { Cursor } from './components/Cursor'
 
 const navigation = [
   { id: 'overview', label: 'Overview', icon: LayoutDashboard },
@@ -75,13 +75,7 @@ export default function App() {
   }
   return (
     <>
-      <>
       <Cursor />
-      <a href="#main" className="skip-link">
-       Skip to content
-      </a>
-      {/* rest unchanged */}
-       </>
       <a href="#main" className="skip-link">
         Skip to content
       </a>
@@ -348,4 +342,3 @@ export default function App() {
     </>
   )
 }
-
